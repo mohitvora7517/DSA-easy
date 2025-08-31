@@ -61,6 +61,16 @@ app.use('/api/leaderboard', leaderboardRoutes);
 app.use('/api/code', codeRoutes);
 app.use('/api/achievements', achievementRoutes);
 
+// Debug: Log all registered routes
+console.log('Registered API routes:');
+console.log('  /api/auth');
+console.log('  /api/users');
+console.log('  /api/levels');
+console.log('  /api/progress');
+console.log('  /api/leaderboard');
+console.log('  /api/code');
+console.log('  /api/achievements');
+
 // Socket.io for real-time features
 io.on('connection', (socket) => {
   console.log('User connected:', socket.id);
@@ -82,6 +92,24 @@ io.on('connection', (socket) => {
 // Health check
 app.get('/api/health', (req, res) => {
   res.json({ status: 'OK', timestamp: new Date().toISOString() });
+});
+
+// Test route for achievements
+app.get('/api/test-achievements', async (req, res) => {
+  try {
+    const Achievement = require('./models/Achievement');
+    const count = await Achievement.countDocuments();
+    res.json({ 
+      message: 'Achievements route working', 
+      count: count,
+      timestamp: new Date().toISOString() 
+    });
+  } catch (error) {
+    res.status(500).json({ 
+      message: 'Achievements route error', 
+      error: error.message 
+    });
+  }
 });
 
 const PORT = process.env.PORT || 5000;

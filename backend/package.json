@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "nodemon server.js",
     "start": "node server.js",
-    "seed": "node scripts/seedData.js"
+    "seed": "node scripts/seedData.js",
+    "test-db": "node test-db.js"
   },
   "dependencies": {
     "express": "^4.18.2",

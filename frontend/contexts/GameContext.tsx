@@ -115,7 +115,9 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
 
   const refreshAchievements = async () => {
     try {
+      console.log('Loading achievements from:', `${API_BASE_URL}/achievements`)
       const response = await axios.get(`${API_BASE_URL}/achievements`)
+      console.log('Achievements loaded:', response.data)
       setAchievements(response.data)
     } catch (error) {
       console.error('Failed to load achievements:', error)
