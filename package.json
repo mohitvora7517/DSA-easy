@@ -1,0 +1,19 @@
+{
+  "name": "dsa-game-platform",
+  "version": "1.0.0",
+  "description": "A gamified platform for learning Data Structures and Algorithms",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd backend && npm run dev",
+    "client": "cd frontend && npm run dev",
+    "build": "cd frontend && npm run build",
+    "install-all": "npm install && cd backend && npm install && cd ../frontend && npm install"
+  },
+  "keywords": ["dsa", "algorithms", "education", "gamification", "coding"],
+  "author": "DSA Game Platform",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
