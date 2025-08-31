@@ -101,9 +101,15 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   const refreshLevels = async () => {
     try {
       const response = await axios.get(`${API_BASE_URL}/levels`)
-      setLevels(response.data)
+      // Mark all levels as unlocked for now (will be updated when user logs in)
+      const levelsWithUnlockStatus = response.data.map(level => ({
+        ...level,
+        isUnlocked: level.levelNumber === 1 // Only first level unlocked by default
+      }))
+      setLevels(levelsWithUnlockStatus)
     } catch (error) {
       console.error('Failed to load levels:', error)
+      setLevels([])
     }
   }
 
@@ -113,6 +119,8 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       setAchievements(response.data)
     } catch (error) {
       console.error('Failed to load achievements:', error)
+      // Set empty array if achievements fail to load
+      setAchievements([])
     }
   }
 
@@ -122,6 +130,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       setLeaderboard(response.data)
     } catch (error) {
       console.error('Failed to load leaderboard:', error)
+      setLeaderboard([])
     }
   }
 

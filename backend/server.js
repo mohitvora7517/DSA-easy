@@ -13,6 +13,7 @@ const levelRoutes = require('./routes/levels');
 const progressRoutes = require('./routes/progress');
 const leaderboardRoutes = require('./routes/leaderboard');
 const codeRoutes = require('./routes/code');
+const achievementRoutes = require('./routes/achievements');
 
 dotenv.config();
 
@@ -58,6 +59,7 @@ app.use('/api/levels', levelRoutes);
 app.use('/api/progress', progressRoutes);
 app.use('/api/leaderboard', leaderboardRoutes);
 app.use('/api/code', codeRoutes);
+app.use('/api/achievements', achievementRoutes);
 
 // Socket.io for real-time features
 io.on('connection', (socket) => {

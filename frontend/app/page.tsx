@@ -15,8 +15,8 @@ export default function Home() {
 
   useEffect(() => {
     if (!authLoading && !gameLoading && user) {
-      // User is authenticated, redirect to dashboard
-      router.push('/dashboard')
+      // User is authenticated, show dashboard
+      // No need to redirect, just show dashboard component
     }
   }, [user, authLoading, gameLoading, router])
 
